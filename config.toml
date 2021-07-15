@@ -1,0 +1,19 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Matthew Lawrence Klein - A Personal Blog"
+theme = 'yinyang'
+
+[author]
+    name = 'Matthew Lawrence Klein'
+    homepage = 'blog.matthewlawrencekle.in'
+
+
+[params]
+    mainSections = ['posts']
+    headTitle = "Matthew Klein blog / thought hole"
+[[params.socials]]
+    name = "About"
+    link = "http://matthewlawrencekle.in"
+[[params.socials]]
+    name = "Github"
+    link = "https://github.com/matthewlawrenceklein"
