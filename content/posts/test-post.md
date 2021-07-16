@@ -1,7 +1,7 @@
 ---
 title: "Test Post"
 date: 2021-07-15T19:47:39Z
-draft: true
+draft: false
 ---
 
 Let's test the _markdown_ of this __excellent__ blog ``` code goes in here ```

@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Matthew Lawrence Klein" />
-  <meta property="og:url" content="http://example.org/posts/" />
-  <link rel="canonical" href="http://example.org/posts/" /><link rel="alternate" type="application/atom+xml" href="http://example.org/index.xml" title="Matthew Lawrence Klein - A Personal Blog">
+  <meta property="og:url" content="http://example.org/posts/recursion-at-the-cat-circus/" />
+  <link rel="canonical" href="http://example.org/posts/recursion-at-the-cat-circus/" /><link rel="alternate" type="application/atom+xml" href="http://example.org/index.xml" title="Matthew Lawrence Klein - A Personal Blog">
 
   <script type="application/ld+json">
   {
@@ -19,9 +19,9 @@
            "@id": "http:\/\/example.org\/"
       },
       "articleSection" : "posts",
-      "name" : "Posts",
-      "headline" : "Posts",
-      "description" : "",
+      "name" : "Recursion at the Cat Circus",
+      "headline" : "Recursion at the Cat Circus",
+      "description" : "Some Background Recently at work I faced an interesting challenge while implementing a new feature. When users load up a new instance of our app, the app scans their input data and then generates a series of default values that are stored in a state object. Elements like height, color, order, and labeling are all pieces of state that can be updated, saved, imported, and exported. Users can also supply their own state data to be used in lieu of the defaults, and users can have any number of different states associated with each project.",
       "inLanguage" : "en-US",
       "author" : "Matthew Lawrence Klein",
       "creator" : "Matthew Lawrence Klein",
@@ -31,15 +31,15 @@
       "copyrightYear" : "2021",
       "datePublished": "2021-07-16 16:50:24 \u002b0000 UTC",
       "dateModified" : "2021-07-16 16:50:24 \u002b0000 UTC",
-      "url" : "http:\/\/example.org\/posts\/",
+      "url" : "http:\/\/example.org\/posts\/recursion-at-the-cat-circus\/",
       "keywords" : [  ]
   }
 </script>
-<title>Posts</title>
-  <meta property="og:title" content="Posts" />
+<title>Recursion at the Cat Circus</title>
+  <meta property="og:title" content="Recursion at the Cat Circus" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Some Background Recently at work I faced an interesting challenge while implementing a new feature. When users load up a new instance of our app, the app scans their input data and then generates a series of default values that are stored in a state object. Elements like height, color, order, and labeling are all pieces of state that can be updated, saved, imported, and exported. Users can also supply their own state data to be used in lieu of the defaults, and users can have any number of different states associated with each project." />
+  <meta name="description" content="Some Background Recently at work I faced an interesting challenge while implementing a new feature. When users load up a new instance of our app, the app scans their input data and then generates a series of default values that are stored in a state object. Elements like height, color, order, and labeling are all pieces of state that can be updated, saved, imported, and exported. Users can also supply their own state data to be used in lieu of the defaults, and users can have any number of different states associated with each project." />
   <meta property="og:locale" content="en-us" />
 
   
@@ -65,10 +65,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -93,42 +94,93 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2021</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2021-07-16 16:50:24 UTC">Jul 16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/recursion-at-the-cat-circus/">Recursion at the Cat Circus</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2021-07-15 19:47:39 UTC">Jul 15</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/test-post/">Test Post</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Recursion at the Cat Circus</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2021-07-16 16:50:24 UTC">
+                16 Jul 2021
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="blog.matthewlawrencekle.in">@Matthew Lawrence Klein</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h3 id="some-background">Some Background</h3>
+<p>Recently at work I faced an interesting challenge while implementing a new feature. When users load up a new instance of our app, the app scans
+their input data and then generates a series of default values that are stored in a <code>state</code> object. Elements like height, color, order, and labeling
+are all pieces of state that can be updated, saved, imported, and exported. Users can also supply their own state data to be used in lieu of the defaults,
+and users can have any number of different states associated with each project. The challenge - allow users to supply incomplete state data, and have the app
+fill in the blanks. For the solution, let&rsquo;s head to the cat circus!
+<img src="https://assets.dnainfo.com/photo/2016/9/1473349372-272315/extralarge.jpg" alt="cat circus"></p>
+<h3 id="the-scenario">The Scenario</h3>
+<p>The cat circus is in town, and you and a friend managed to snag tickets to opening night! You both arrive early and take your seats, notepads in hand - ready to
+log everything you see during the show. But there&rsquo;s one thing neither of you accounted for - these cats are fast!</p>
+<p><img src="https://33.media.tumblr.com/2af266dbaf88f82a533e727b7d3ca783/tumblr_nvwvmmEucR1uuyy36o1_500.gif" alt="fast cat"></p>
+<p>So fast and mesmerizing is the action that you&rsquo;re unable to jot it all down in time. Each time you look up from your notebook, a brand new cat with a brand new skill
+has been introduced, and you&rsquo;re barely keeping up. After the final act ends and all the cats come out to take a bow, you take a look at your notes and realized you may
+have missed some action.</p>
+<pre><code>let catCircus = {
+    actOne : {
+        01 : {
+            name : 'Holly', 
+            age : 7,
+            act : 'spun a plate on her head'
+        },
+        02 : {
+            age : 2, 
+            act : 'can write in cursive'
+        },
+        03 : {},
+        04 : {
+            name : 'Mr. Shoeshine',
+        },
+    },
+    actTwo : {
+        ...continued
+    },
+}
+</code></pre><p>You glance over to your friend who looks up from their own notebook, similarly crestfallen. The bad news - you were both suckered in by the wildly cute and entertaining cats,
+and your notes reflect your distraction. The good news - between the two of you, you&rsquo;re confident you&rsquo;ve captured a complete dataset. You run out of the auditorium (after buying a shirt)
+and head straight to your computer. You&rsquo;re going to write an algorithm that takes in both of your incomplete datasets and spits out a complete one. And since the dog frisbee throw competition
+is in town next week you&rsquo;re going to make sure your algorithm is extensible, so you can kick back and enjoy those frisbee pups.</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -148,6 +200,8 @@
     
   
 </script>
+
+  
 
 </body>
 
