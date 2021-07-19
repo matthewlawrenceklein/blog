@@ -1,7 +1,7 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Matthew Lawrence Klein - A Personal Blog"
-theme = 'yinyang'
+theme = 'yinyang-fork'
 
 [author]
     name = 'Matthew Lawrence Klein'
