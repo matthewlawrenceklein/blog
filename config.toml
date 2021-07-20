@@ -6,7 +6,7 @@ publish = './docs'
 
 [author]
     name = 'Matthew Lawrence Klein'
-    homepage = 'blog.matthewlawrencekle.in'
+    homepage = 'http://matthewlawrencekle.in'
 
 
 [params]
