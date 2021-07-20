@@ -23,13 +23,17 @@ So fast and mesmerizing is the action that you're unable to jot it all down in t
 has been introduced, and you're barely keeping up. After the final act ends and all the cats come out to take a bow, you take a look at your notes and realized you may
 have missed some action. 
 
-```
+```js
 let catCircus = {
     actOne : {
         01 : {
             name : 'Holly', 
             age : 7,
-            act : 'spun a plate on her head'
+            act : 'spun a plate on her head',
+            crowdReaction : {
+                start : 'polite applause', 
+                finish : 'frenzied clapping'
+            }
         },
         02 : {
             age : 2, 
@@ -38,6 +42,9 @@ let catCircus = {
         03 : {},
         04 : {
             name : 'Mr. Shoeshine',
+            crowdReaction : {
+                finish : 'they stormed the stage'
+            }
         },
     },
     actTwo : {
@@ -48,4 +55,44 @@ let catCircus = {
 You glance over to your friend who looks up from their own notebook, similarly crestfallen. The bad news - you were both suckered in by the wildly cute and entertaining cats, 
 and your notes reflect your distraction. The good news - between the two of you, you're confident you've captured a complete dataset. You run out of the auditorium (after buying a shirt)
 and head straight to your computer. You're going to write an algorithm that takes in both of your incomplete datasets and spits out a complete one. And since the dog frisbee throw competition 
-is in town next week you're going to make sure your algorithm is extensible, so you can kick back and enjoy those frisbee pups. 
+is in town next week you're going to make sure your algorithm is extensible, so you can kick back and enjoy those frisbee pups. As you load up your IDE and settle your fingers onto the keyboard, 
+you begin by framing out how your algorithm should work. You know that it should probably 
+
+- take in two datasets
+- return either dataset if both datasets are the same (in this scenario, this implies they're both complete)
+- iterate through each layer of the first dataset. At each point, account for the following
+    - if we're not dealing with an object, return 
+    - if the key/value pair for set A === set B, do nothing
+    - if the kvp for set A does not exist in set B, add it
+    - if the kvp for set A !== set B, we recurse! 
+- once we've iterated through the deepested nested values, we can repeat the process by flipping the datasets 
+
+Great, you're ready to write some code! Let's start with a helper function that ensures we're dealing with objects. 
+
+```js
+compareDatasets = (a, b) => {
+    isObject = item => typeof item === 'object' ? true : false // check and end recursion if not provided an object 
+}
+```
+ 
+Now you're ready to start iterating
+
+```js
+compareDatasets = (a,b) => {
+    isObject = item => typeof item === 'object' ? true : false // check and end recursion if not provided an object 
+
+    if(isObject(a)){
+        Object.entries(a).forEach(([key, value]) => {
+            if(a[key] === b[key]){ // if kvp in dataset a === dataset b, do nothing 
+                return 
+            } else if(b[key] == null || b[key] == undefined){ // if dataset b is missing an element found in dataset a, add it 
+                b[key] = value                     
+            } else if (b[key] !== value){ // the objects don't match, so we recurse down a level
+                compareDatasets(a[key], b[key])       
+            } 
+        })
+    }
+    return a 
+}
+
+```

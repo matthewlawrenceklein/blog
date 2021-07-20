@@ -109,7 +109,7 @@
             <div class="col-xs-6">
               
               <div class="post-author">
-                <a target="_blank" href="blog.matthewlawrencekle.in">@Matthew Lawrence Klein</a>
+                <a target="_blank" href="http://matthewlawrencekle.in">@Matthew Lawrence Klein</a>
               </div>
               
             </div>
@@ -133,31 +133,74 @@ log everything you see during the show. But there&rsquo;s one thing neither of y
 <p>So fast and mesmerizing is the action that you&rsquo;re unable to jot it all down in time. Each time you look up from your notebook, a brand new cat with a brand new skill
 has been introduced, and you&rsquo;re barely keeping up. After the final act ends and all the cats come out to take a bow, you take a look at your notes and realized you may
 have missed some action.</p>
-<pre><code>let catCircus = {
-    actOne : {
-        01 : {
-            name : 'Holly', 
-            age : 7,
-            act : 'spun a plate on her head'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">catCircus</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">actOne</span> <span style="color:#f92672">:</span> {
+        <span style="color:#ae81ff">01</span> <span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Holly&#39;</span>, 
+            <span style="color:#a6e22e">age</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">7</span>,
+            <span style="color:#a6e22e">act</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;spun a plate on her head&#39;</span>,
+            <span style="color:#a6e22e">crowdReaction</span> <span style="color:#f92672">:</span> {
+                <span style="color:#a6e22e">start</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;polite applause&#39;</span>, 
+                <span style="color:#a6e22e">finish</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;frenzied clapping&#39;</span>
+            }
         },
-        02 : {
-            age : 2, 
-            act : 'can write in cursive'
+        <span style="color:#ae81ff">02</span> <span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">age</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, 
+            <span style="color:#a6e22e">act</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;can write in cursive&#39;</span>
         },
-        03 : {},
-        04 : {
-            name : 'Mr. Shoeshine',
+        <span style="color:#ae81ff">03</span> <span style="color:#f92672">:</span> {},
+        <span style="color:#ae81ff">04</span> <span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Mr. Shoeshine&#39;</span>,
+            <span style="color:#a6e22e">crowdReaction</span> <span style="color:#f92672">:</span> {
+                <span style="color:#a6e22e">finish</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;they stormed the stage&#39;</span>
+            }
         },
     },
-    actTwo : {
-        ...continued
+    <span style="color:#a6e22e">actTwo</span> <span style="color:#f92672">:</span> {
+        ...<span style="color:#a6e22e">continued</span>
     },
 }
-</code></pre><p>You glance over to your friend who looks up from their own notebook, similarly crestfallen. The bad news - you were both suckered in by the wildly cute and entertaining cats,
+</code></pre></div><p>You glance over to your friend who looks up from their own notebook, similarly crestfallen. The bad news - you were both suckered in by the wildly cute and entertaining cats,
 and your notes reflect your distraction. The good news - between the two of you, you&rsquo;re confident you&rsquo;ve captured a complete dataset. You run out of the auditorium (after buying a shirt)
 and head straight to your computer. You&rsquo;re going to write an algorithm that takes in both of your incomplete datasets and spits out a complete one. And since the dog frisbee throw competition
-is in town next week you&rsquo;re going to make sure your algorithm is extensible, so you can kick back and enjoy those frisbee pups.</p>
+is in town next week you&rsquo;re going to make sure your algorithm is extensible, so you can kick back and enjoy those frisbee pups. As you load up your IDE and settle your fingers onto the keyboard,
+you begin by framing out how your algorithm should work. You know that it should probably</p>
+<ul>
+<li>take in two datasets</li>
+<li>return either dataset if both datasets are the same (in this scenario, this implies they&rsquo;re both complete)</li>
+<li>iterate through each layer of the first dataset. At each point, account for the following
+<ul>
+<li>if we&rsquo;re not dealing with an object, return</li>
+<li>if the key/value pair for set A === set B, do nothing</li>
+<li>if the kvp for set A does not exist in set B, add it</li>
+<li>if the kvp for set A !== set B, we recurse!</li>
+</ul>
+</li>
+<li>once we&rsquo;ve iterated through the deepested nested values, we can repeat the process by flipping the datasets</li>
+</ul>
+<p>Great, you&rsquo;re ready to write some code! Let&rsquo;s start with a helper function that ensures we&rsquo;re dealing with objects.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">compareDatasets</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
+    <span style="color:#a6e22e">isObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span> =&gt; <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;object&#39;</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> <span style="color:#75715e">// check and end recursion if not provided an object 
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Now you&rsquo;re ready to start iterating</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">compareDatasets</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>) =&gt; {
+    <span style="color:#a6e22e">isObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span> =&gt; <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;object&#39;</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> <span style="color:#75715e">// check and end recursion if not provided an object 
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isObject</span>(<span style="color:#a6e22e">a</span>)){
+        Object.<span style="color:#a6e22e">entries</span>(<span style="color:#a6e22e">a</span>).<span style="color:#a6e22e">forEach</span>(([<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>]) =&gt; {
+            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">===</span> <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>]){ <span style="color:#75715e">// if kvp in dataset a === dataset b, do nothing 
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">return</span> 
+            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">undefined</span>){ <span style="color:#75715e">// if dataset b is missing an element found in dataset a, add it 
+</span><span style="color:#75715e"></span>                <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">value</span>                     
+            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">!==</span> <span style="color:#a6e22e">value</span>){ <span style="color:#75715e">// the objects don&#39;t match, so we recurse down a level
+</span><span style="color:#75715e"></span>                <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">key</span>], <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>])       
+            } 
+        })
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> 
+}
 
+</code></pre></div>
         </div>
 
         <div class="row middle-xs">

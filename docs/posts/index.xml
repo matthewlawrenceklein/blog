@@ -16,14 +16,5 @@
       <description>Some Background Recently at work I faced an interesting challenge while implementing a new feature. When users load up a new instance of our app, the app scans their input data and then generates a series of default values that are stored in a state object. Elements like height, color, order, and labeling are all pieces of state that can be updated, saved, imported, and exported. Users can also supply their own state data to be used in lieu of the defaults, and users can have any number of different states associated with each project.</description>
     </item>
     
-    <item>
-      <title>Test Post</title>
-      <link>http://example.org/posts/test-post/</link>
-      <pubDate>Thu, 15 Jul 2021 19:47:39 +0000</pubDate>
-      
-      <guid>http://example.org/posts/test-post/</guid>
-      <description>Let&amp;rsquo;s test the markdown of this excellent blog code goes in here bork </description>
-    </item>
-    
   </channel>
 </rss>
