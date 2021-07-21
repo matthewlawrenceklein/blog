@@ -1,7 +1,7 @@
 ---
 title: "Recursion at the Cat Circus"
 date: 2021-07-16T16:50:24Z
-draft: true
+draft: false
 ---
 ### Some Background
 
