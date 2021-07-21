@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "http://blog.matthewlawrencekle.in/"
 languageCode = "en-us"
 title = "Matthew Lawrence Klein - A Personal Blog"
 theme = 'yinyang-fork'
@@ -11,7 +11,7 @@ publish = './docs'
 
 [params]
     mainSections = ['posts']
-    headTitle = "Matthew Klein blog / thought hole"
+    headTitle = "Matthew Lawrence Klein blog / thought hole"
 [[params.socials]]
     name = "About"
     link = "http://matthewlawrencekle.in"
