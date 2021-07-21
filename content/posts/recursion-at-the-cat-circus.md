@@ -12,7 +12,7 @@ and users can have any number of different states associated with each project. 
 fill in the blanks without overriding the user's data. For the solution, let's head to the cat circus!
 ![cat circus](https://assets.dnainfo.com/photo/2016/9/1473349372-272315/extralarge.jpg) 
 
-### Why recursion
+### Why Recursion
 ![recursion](https://theburningmonk.com/wp-content/uploads/2017/08/recursion-01.png)
 
 One of the goals of good software is extensibility - instead of writing a function to greet Paul, we'd want to write a function that can greet _anyone_, and takes in 
