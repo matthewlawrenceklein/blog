@@ -9,9 +9,17 @@ Recently at work I faced an interesting challenge while implementing a new featu
 their input data and then generates a series of default values that are stored in a `state` object. Elements like height, color, order, and labeling
 are all pieces of state that can be updated, saved, imported, and exported. Users can also supply their own state data to be used in lieu of the defaults, 
 and users can have any number of different states associated with each project. The challenge - allow users to supply incomplete state data, and have the app 
-fill in the blanks. For the solution, let's head to the cat circus!
+fill in the blanks without overriding the user's data. For the solution, let's head to the cat circus!
 ![cat circus](https://assets.dnainfo.com/photo/2016/9/1473349372-272315/extralarge.jpg) 
 
+### Why recursion
+![recursion](https://theburningmonk.com/wp-content/uploads/2017/08/recursion-01.png)
+
+One of the goals of good software is extensibility - instead of writing a function to greet Paul, we'd want to write a function that can greet _anyone_, and takes in 
+a name (or better yet, any number of names) and greets each of them programmatically. Similarly, when dealing with deeply nested data it becomes incredibly cumbersome 
+to hardcode processes. Maybe the object structure changes, or levels are added/removed, and your hardcoded solution no longer works. Distilled to its most basic form, 
+a recursive function does something until a specific condition is met, and then it stops (or does something else). Like hunting for buried treasure - you dig a hole straight 
+down until you hit a treasure chest, and then you stop.  
 ### The Scenario
 
 The cat circus is in town, and you and a friend managed to snag tickets to opening night! You both arrive early and take your seats, notepads in hand - ready to 
@@ -92,7 +100,33 @@ compareDatasets = (a,b) => {
             } 
         })
     }
-    return a 
+}
+```
+And once you've gone through the first dataset, you can repeat the process for the second! You can keep your function DRY by creating a 'parent' function that calls `compareDatasets()` 
+
+```js
+compareDatasets = (a,b) => {
+    isObject = item => typeof item === 'object' ? true : false // check and end recursion if not provided an object 
+
+    if(isObject(a)){
+        Object.entries(a).forEach(([key, value]) => {
+            if(a[key] === b[key]){ // if kvp in dataset a === dataset b, do nothing 
+                return 
+            } else if(b[key] == null || b[key] == undefined){ // if dataset b is missing an element found in dataset a, add it 
+                b[key] = value                     
+            } else if (b[key] !== value){ // the objects don't match, so we recurse down a level
+                compareDatasets(a[key], b[key])       
+            } 
+        })
+    }
 }
 
+animalEventNotesGenerator = (a,b) => {
+    compareDatasets(a,b)
+    compareDatasets(b,a)
+    return a
+}
 ```
+Now anytime you and your buddy go to enjoy some amazing animal-based spectacle, you can rest easy knowing you'll be able to get your notes together with a couple quick clicks. All those programming
+lessons are finally paying off :)
+![frisbee dog](https://www.irishnews.com/picturesarchive/irishnews/irishnews/2019/02/25/205100809-bace59b9-d607-4e6d-9bbe-e87630f4d03a.jpg)

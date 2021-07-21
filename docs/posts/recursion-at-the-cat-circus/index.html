@@ -124,8 +124,15 @@
 their input data and then generates a series of default values that are stored in a <code>state</code> object. Elements like height, color, order, and labeling
 are all pieces of state that can be updated, saved, imported, and exported. Users can also supply their own state data to be used in lieu of the defaults,
 and users can have any number of different states associated with each project. The challenge - allow users to supply incomplete state data, and have the app
-fill in the blanks. For the solution, let&rsquo;s head to the cat circus!
+fill in the blanks without overriding the user&rsquo;s data. For the solution, let&rsquo;s head to the cat circus!
 <img src="https://assets.dnainfo.com/photo/2016/9/1473349372-272315/extralarge.jpg" alt="cat circus"></p>
+<h3 id="why-recursion">Why recursion</h3>
+<p><img src="https://theburningmonk.com/wp-content/uploads/2017/08/recursion-01.png" alt="recursion"></p>
+<p>One of the goals of good software is extensibility - instead of writing a function to greet Paul, we&rsquo;d want to write a function that can greet <em>anyone</em>, and takes in
+a name (or better yet, any number of names) and greets each of them programmatically. Similarly, when dealing with deeply nested data it becomes incredibly cumbersome
+to hardcode processes. Maybe the object structure changes, or levels are added/removed, and your hardcoded solution no longer works. Distilled to its most basic form,
+a recursive function does something until a specific condition is met, and then it stops (or does something else). Like hunting for buried treasure - you dig a hole straight
+down until you hit a treasure chest, and then you stop.</p>
 <h3 id="the-scenario">The Scenario</h3>
 <p>The cat circus is in town, and you and a friend managed to snag tickets to opening night! You both arrive early and take your seats, notepads in hand - ready to
 log everything you see during the show. But there&rsquo;s one thing neither of you accounted for - these cats are fast!</p>
@@ -197,10 +204,33 @@ you begin by framing out how your algorithm should work. You know that it should
             } 
         })
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> 
+}
+</code></pre></div><p>And once you&rsquo;ve gone through the first dataset, you can repeat the process for the second! You can keep your function DRY by creating a &lsquo;parent&rsquo; function that calls <code>compareDatasets()</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">compareDatasets</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>) =&gt; {
+    <span style="color:#a6e22e">isObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span> =&gt; <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;object&#39;</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> <span style="color:#75715e">// check and end recursion if not provided an object 
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isObject</span>(<span style="color:#a6e22e">a</span>)){
+        Object.<span style="color:#a6e22e">entries</span>(<span style="color:#a6e22e">a</span>).<span style="color:#a6e22e">forEach</span>(([<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span>]) =&gt; {
+            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">===</span> <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>]){ <span style="color:#75715e">// if kvp in dataset a === dataset b, do nothing 
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">return</span> 
+            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">undefined</span>){ <span style="color:#75715e">// if dataset b is missing an element found in dataset a, add it 
+</span><span style="color:#75715e"></span>                <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">value</span>                     
+            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>] <span style="color:#f92672">!==</span> <span style="color:#a6e22e">value</span>){ <span style="color:#75715e">// the objects don&#39;t match, so we recurse down a level
+</span><span style="color:#75715e"></span>                <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">key</span>], <span style="color:#a6e22e">b</span>[<span style="color:#a6e22e">key</span>])       
+            } 
+        })
+    }
 }
 
-</code></pre></div>
+<span style="color:#a6e22e">animalEventNotesGenerator</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>) =&gt; {
+    <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>)
+    <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">a</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>
+}
+</code></pre></div><p>Now anytime you and your buddy go to enjoy some amazing animal-based spectacle, you can rest easy knowing you&rsquo;ll be able to get your notes together with a couple quick clicks. All those programming
+lessons are finally paying off :)
+<img src="https://www.irishnews.com/picturesarchive/irishnews/irishnews/2019/02/25/205100809-bace59b9-d607-4e6d-9bbe-e87630f4d03a.jpg" alt="frisbee dog"></p>
+
         </div>
 
         <div class="row middle-xs">
