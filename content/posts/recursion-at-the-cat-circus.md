@@ -122,9 +122,10 @@ compareDatasets = (a,b) => {
 }
 
 animalEventNotesGenerator = (a,b) => {
-    compareDatasets(a,b)
-    compareDatasets(b,a)
-    return a
+    if (a === b) return a // if they're the same, return 
+    compareDatasets(a,b) // compare a to b
+    compareDatasets(b,a) // compare b to a
+    return a // return a complete dataset 
 }
 ```
 Now anytime you and your buddy go to enjoy some amazing animal-based spectacle, you can rest easy knowing you'll be able to get your notes together with a couple quick clicks. All those programming
