@@ -126,7 +126,7 @@ are all pieces of state that can be updated, saved, imported, and exported. User
 and users can have any number of different states associated with each project. The challenge - allow users to supply incomplete state data, and have the app
 fill in the blanks without overriding the user&rsquo;s data. For the solution, let&rsquo;s head to the cat circus!
 <img src="https://assets.dnainfo.com/photo/2016/9/1473349372-272315/extralarge.jpg" alt="cat circus"></p>
-<h3 id="why-recursion">Why recursion</h3>
+<h3 id="why-recursion">Why Recursion</h3>
 <p><img src="https://theburningmonk.com/wp-content/uploads/2017/08/recursion-01.png" alt="recursion"></p>
 <p>One of the goals of good software is extensibility - instead of writing a function to greet Paul, we&rsquo;d want to write a function that can greet <em>anyone</em>, and takes in
 a name (or better yet, any number of names) and greets each of them programmatically. Similarly, when dealing with deeply nested data it becomes incredibly cumbersome
@@ -223,10 +223,11 @@ you begin by framing out how your algorithm should work. You know that it should
 }
 
 <span style="color:#a6e22e">animalEventNotesGenerator</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>) =&gt; {
-    <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>)
-    <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">a</span>)
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>
-}
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">b</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#75715e">// if they&#39;re the same, return 
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">a</span>,<span style="color:#a6e22e">b</span>) <span style="color:#75715e">// compare a to b
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">compareDatasets</span>(<span style="color:#a6e22e">b</span>,<span style="color:#a6e22e">a</span>) <span style="color:#75715e">// compare b to a
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#75715e">// return a complete dataset 
+</span><span style="color:#75715e"></span>}
 </code></pre></div><p>Now anytime you and your buddy go to enjoy some amazing animal-based spectacle, you can rest easy knowing you&rsquo;ll be able to get your notes together with a couple quick clicks. All those programming
 lessons are finally paying off :)
 <img src="https://www.irishnews.com/picturesarchive/irishnews/irishnews/2019/02/25/205100809-bace59b9-d607-4e6d-9bbe-e87630f4d03a.jpg" alt="frisbee dog"></p>
